@@ -1,5 +1,5 @@
 void establishColourScheme(){
-
+//hi
   int gridX = 10;
   int gridY = 10; //set colour finder grid size
   
