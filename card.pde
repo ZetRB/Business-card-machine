@@ -69,6 +69,6 @@ class Card{
   textFont(universConB);
   text(forename,location.x,location.y);
   textSize(surnameSize);
-  text(surname,location.x,location.y + offsetVal);
+  text(surname,location.x,location.y + yOffset);
   }
 }
