@@ -1,13 +1,15 @@
 class Card{
   Grid grid;
   PVector location;
-  String Fname = "ZET";
-  String Sname = "ROPER-BLACKMAN";
+  String forename = "ZET";
+  String surname = "ROPER-BLACKMAN";
   String website = "zetroperblackman.com";
   PImage background;
   color text, highlight;
+  int surnameSize = int(random(100,150));
+  int fornameSize = int(random(surnameSize,surnameSize+50));
   int yOffset;
-  int offsetVal = 100;
+  int offsetVal = fornameSize;//100;
   int x;
   int y;
   int sideBias = 0; // a way of making text follow or avoid edges.
@@ -63,9 +65,10 @@ class Card{
   fill(255,0,0);
   ellipse(location.x,location.y, 20,20);
   fill(brightest);
-  textSize(80);
+  textSize(fornameSize);
   textFont(universConB);
-  text(Fname,location.x,location.y);
-  text(Sname,location.x,location.y + offsetVal);
+  text(forename,location.x,location.y);
+  textSize(surnameSize);
+  text(surname,location.x,location.y + offsetVal);
   }
 }
