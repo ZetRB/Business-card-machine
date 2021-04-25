@@ -1,5 +1,6 @@
 class Card{
   Grid grid;
+  PVector location;
   String name = "ZET ROPER-BLACKMAN";
   String website = "zetroperblackman.com";
   PImage background;
@@ -19,8 +20,11 @@ class Card{
    x = int(random(width-background.width/2,0+background.width/2));
    y = int(random(height-background.height/2,0+background.height/2));
    println(x , ":", y);
-   chooseEdge(sideBias);
+  
    grid = new Grid(width/20,2,2);
+   location = grid.findGrid(chooseEdge(sideBias));
+   println(location);
+   
   }
   
   int chooseEdge(int bias){
@@ -36,5 +40,7 @@ class Card{
      imageMode(CENTER);
    image(background,x,y);
   grid.draw();
+  fill(255,0,0);
+  ellipse(location.x,location.y, 20,20);
   }
 }
