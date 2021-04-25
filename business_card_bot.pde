@@ -1,4 +1,5 @@
 import java.util.Date;
+Card card;
 color[] colourScheme;
 int canvasX = 1000;
 int canvasY = int(canvasX/1.61);
@@ -13,9 +14,17 @@ void setup(){
   findImages();
   establishColourScheme();
     showColours();  
+    delay(50);
+    makeCards();
 
 }
 
-void draw(){
+void makeCards(){
+  int random = int(random(0,imageNames.size()));
+  String cardName = imageNames.get(random);
+  card = new Card(cardName, brightest, saturated);
+}
 
+void draw(){
+card.draw();
 }
