@@ -1,10 +1,12 @@
 class Card{
+  Grid grid;
   String name = "ZET ROPER-BLACKMAN";
   String website = "zetroperblackman.com";
   PImage background;
   color text, highlight;
   int x;
   int y;
+  int sideBias = 0; // a way of making text follow or avoid edges.
   Card(String imageName, color bright,color sat){
     text = bright;
     highlight = sat;
@@ -17,10 +19,22 @@ class Card{
    x = int(random(width-background.width/2,0+background.width/2));
    y = int(random(height-background.height/2,0+background.height/2));
    println(x , ":", y);
+   chooseEdge(sideBias);
+   grid = new Grid(width/20,2,2);
+  }
+  
+  int chooseEdge(int bias){
+   if(bias != 0){
+    return bias; 
+   } else {
+    int edge = int(random(-2.5,2.5));
+    return edge;
+   }
   }
   
   void draw(){
      imageMode(CENTER);
-   image(background,x,y); 
+   image(background,x,y);
+  grid.draw();
   }
 }
