@@ -13,8 +13,7 @@ void setup(){
   size(1000,600);
   findImages();
   establishColourScheme();
-    showColours();  
-    delay(50);
+    //showColours();  
     makeCards();
 
 }
