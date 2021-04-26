@@ -14,10 +14,15 @@ class Card{
   int y;
   int sideBias = 0; // a way of making text follow or avoid edges.
   Card(String imageName, color bright,color sat){
-    text = bright;
-    highlight = sat;
+    text = establishColourScheme(imageName)[0];
+    highlight = establishColourScheme(imageName)[1];
+    //text = bright;
+    //highlight = sat;
+   // text = brightest;
+   // highlight = saturated;
     background = loadImage(imageName);
     setup();
+    
   }
   
   void setup(){

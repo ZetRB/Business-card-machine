@@ -14,7 +14,6 @@ void setup(){
   size(1000,618);
   fonts();
   findImages();
-  establishColourScheme();
     //showColours();  
     makeCards();
 

@@ -1,13 +1,13 @@
-void establishColourScheme(){
+color[] establishColourScheme(String chosenImage){
 //hi
   int gridX = 10;
   int gridY = 10; //set colour finder grid size
   
   colourScheme = new color[gridX*gridY];
  
- int random = int(random(0,imageNames.size()));
- PImage sample = loadImage(imageNames.get(random));
- println("image chosen = " + imageNames.get(random));
+// int random = int(random(0,imageNames.size()));
+ PImage sample = loadImage(chosenImage);
+ println("image chosen = " + chosenImage);
  sample.loadPixels(); // choose random image to derive colour scheme
  
  int w = sample.width;
@@ -29,6 +29,12 @@ void establishColourScheme(){
      brightest = colour; 
     }
   }
+  
+  color[] picked = new color[2];
+  picked[0] = brightest;
+  picked[1] = saturated;
+  
+  return picked;
  
  
 }
