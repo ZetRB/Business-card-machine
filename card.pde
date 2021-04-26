@@ -6,10 +6,11 @@ class Card{
   String website = "zetroperblackman.com";
   PImage background;
   color text, highlight;
-  int surnameSize = int(random(100,150));
-  int fornameSize = int(random(surnameSize,surnameSize+50));
+  int surnameSize = int(random(50,100));
+ 
+  int forenameSize = int(random(surnameSize+50,surnameSize+100));
   int yOffset;
-  int offsetVal = fornameSize;//100;
+  int offsetVal = forenameSize;//100;
   int x;
   int y;
   int sideBias = 0; // a way of making text follow or avoid edges.
@@ -30,8 +31,9 @@ class Card{
    x = int(random(width-background.width/2,0+background.width/2));
    y = int(random(height-background.height/2,0+background.height/2));
    println(x , ":", y);
-  
-   grid = new Grid(width/20,2,2);
+   println("forename size" , forenameSize);
+   println("surname size" , surnameSize);
+   grid = new Grid(width/40,2,2);
    location = grid.findGrid(chooseEdge(sideBias));
    setTextAlign(int(location.z));
    println(location);
@@ -67,13 +69,12 @@ class Card{
      imageMode(CENTER);
    image(background,x,y);
   grid.draw();
-  fill(255,0,0);
-  ellipse(location.x,location.y, 20,20);
+  //fill(255,0,0);
+  //ellipse(location.x,location.y, 20,20);
   fill(brightest);
-  textSize(fornameSize);
-  textFont(universConB);
+  textFont(universConB,forenameSize);
   text(forename,location.x,location.y);
-  textSize(surnameSize);
+  textFont(universConB,surnameSize);
   text(surname,location.x,location.y + yOffset);
   }
 }
