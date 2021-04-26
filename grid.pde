@@ -18,9 +18,9 @@ class Grid {
     } else {
       gridPos = new PVector[(cols)*(rows)];
       int index = 0;
-      for (int x = 0; x < cols; x ++) {
+      for (int y = 0; y < cols; y ++) {
 
-        for (int y = 0; y < rows; y++) {
+        for (int x = 0; x < rows; x++) {
           gridPos[index] = new PVector(border+(x*((width-(border*2))/(cols-1))), border+(y*((height-(border*2))/(rows-1))));
           index ++;
         }
@@ -29,6 +29,7 @@ class Grid {
   }
 
   PVector findGrid(int bias) {
+    println(bias);
     int choice;
     if (bias == -1) {
       choice = int(random(0, (gridPos.length/cols)-1));
@@ -36,7 +37,7 @@ class Grid {
       checkCorner(choice);
       return(gridPos[choice]);
     } else if (bias == 1) {
-      choice = int(random((cols-1)*gridPos.length/cols, gridPos.length/cols)); 
+      choice = int(random((cols-1)*(gridPos.length/cols), gridPos.length-1)); 
       checkCorner(choice);
       //gridPos[choice].set(gridPos[choice].x,gridPos[choice].y,1);
       return(gridPos[choice]);
@@ -70,9 +71,9 @@ class Grid {
   println("choice: " , choice);
    if(choice == 0){
      gridPos[choice].set(gridPos[choice].x,gridPos[choice].y,1);
-   } else if(choice == cols){
+   } else if(choice == cols-1){
     gridPos[choice].set(gridPos[choice].x,gridPos[choice].y,3); 
-   } else if(choice == 1){//(rows-1)*cols){                      // this isnt good enough, will only work with 4 grid squares, needs attention
+   } else if(choice == (rows-1)*cols){                      // this isnt good enough, will only work with 4 grid squares, needs attention
     gridPos[choice].set(gridPos[choice].x,gridPos[choice].y,7); 
    } else if(choice == (rows*cols)-1){
     gridPos[choice].set(gridPos[choice].x,gridPos[choice].y,9); 

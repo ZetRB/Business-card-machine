@@ -35,8 +35,8 @@ class Card{
    println("surname size" , surnameSize);
    grid = new Grid(width/60,2,2);
    location = grid.findGrid(chooseEdge(sideBias));
-   opposite = grid.findGrid(chooseEdge(sideBias*-1));
-   setTextAlign(int(location.z));
+  // opposite = grid.findGrid(chooseEdge(sideBias*-1));
+  // setTextAlign(int(location.z));
    println(location);
    
   }
@@ -67,11 +67,12 @@ class Card{
   }
   
   void draw(){
+    setTextAlign(int(location.z));
      imageMode(CENTER);
    image(background,x,y);
-  //grid.draw();
-  //fill(255,0,0);
-  //ellipse(location.x,location.y, 20,20);
+  grid.draw();
+  fill(255,0,0);
+  ellipse(location.x,location.y, 20,20);
   fill(brightest);
   textFont(universConB,forenameSize);
   text(forename,location.x,location.y);
