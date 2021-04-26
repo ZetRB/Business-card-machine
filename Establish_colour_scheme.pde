@@ -31,7 +31,7 @@ color[] establishColourScheme(String chosenImage){
   }
   
   color[] picked = new color[2];
-  picked[0] = brightest;
+  picked[0] = colourScheme[int(random(0,colourScheme.length-1))];
   picked[1] = saturated;
   
   return picked;

@@ -34,9 +34,8 @@ class Card{
    println("forename size" , forenameSize);
    println("surname size" , surnameSize);
    grid = new Grid(width/60,2,2);
-   location = grid.findGrid(chooseEdge(sideBias));
-  // opposite = grid.findGrid(chooseEdge(sideBias*-1));
-  // setTextAlign(int(location.z));
+   location = grid.findGrid(sideBias);
+   opposite = grid.findGrid(chooseEdge(sideBias*-1));
    println(location);
    
   }
