@@ -1,14 +1,14 @@
 class Card{
   Grid grid;
-  PVector location;
+  PVector location, opposite;
   String forename = "ZET";
   String surname = "ROPER-BLACKMAN";
-  String website = "zetroperblackman.com";
+  String website = "This business card was designed by a robot- find out how at zetroperblackman.com";
   PImage background;
   color text, highlight;
-  int surnameSize = int(random(50,100));
+  int surnameSize = int(random(50,120));
  
-  int forenameSize = int(random(surnameSize+50,surnameSize+100));
+  int forenameSize = int(random(surnameSize+50,surnameSize+150));
   int yOffset;
   int offsetVal = forenameSize;//100;
   int x;
@@ -33,8 +33,9 @@ class Card{
    println(x , ":", y);
    println("forename size" , forenameSize);
    println("surname size" , surnameSize);
-   grid = new Grid(width/40,2,2);
+   grid = new Grid(width/60,2,2);
    location = grid.findGrid(chooseEdge(sideBias));
+   opposite = grid.findGrid(chooseEdge(sideBias*-1));
    setTextAlign(int(location.z));
    println(location);
    
@@ -68,7 +69,7 @@ class Card{
   void draw(){
      imageMode(CENTER);
    image(background,x,y);
-  grid.draw();
+  //grid.draw();
   //fill(255,0,0);
   //ellipse(location.x,location.y, 20,20);
   fill(brightest);

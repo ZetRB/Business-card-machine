@@ -5,7 +5,7 @@ int canvasX = 1000;
 int canvasY = int(canvasX/1.61);
 int imagePool = 1;//how many images there are to choose from
 PImage[] sample;
-PFont universConB;
+PFont universConB, universLight;
 
   color brightest = #000000;
   color saturated = #000000;
@@ -21,6 +21,7 @@ void setup(){
 
 void fonts(){
  universConB = createFont("UniversLTPro-BoldCond.ttf", 80); 
+ universLight = createFont("UniversLTPro-45Light.ttf",50);
 }
 
 void makeCards(){
