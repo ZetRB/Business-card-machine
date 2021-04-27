@@ -12,7 +12,7 @@ class Card {
   PImage background;
   color text, highlight;
   boolean flyer;
-  int flyerPassageWidth = 400;
+  int flyerPassageWidth = 500;
   int textSpacing = 1;
   int surnameSize;
   int forenameSize;
@@ -20,6 +20,7 @@ class Card {
   int offsetVal;//100;
   int x;
   int y;
+  float tempSize = 5;
   int sideBias = 0; // a way of making text follow or avoid edges.
 
   Card(String imageName, boolean flyer, StringList doingWords) {
@@ -37,7 +38,7 @@ class Card {
 
   void setup() {
     resize(flyer);
-    textSize(flyer);
+    setTextSize(flyer);
 
     x = int(random(width-background.width/2, 0+background.width/2));
     y = int(random(height-background.height/2, 0+background.height/2));
@@ -51,7 +52,7 @@ class Card {
     println(location);
   }
 
-  void textSize(boolean flyer) {
+  void setTextSize(boolean flyer) {
     float minSize = 50;
     float maxSize = 120;
     if (flyer) {
@@ -154,7 +155,7 @@ class Card {
     for (String line : lines) {
       float size =getSize(line);
       textFont(universConB, size);
-      text(line, location.x, location.y + yOffset +totalOffset);
+      text(line, location.x, location.y + yOffset + surnameSize+totalOffset);
       if (textSpacing > 0) {
         totalOffset += size;
       } else {
@@ -165,18 +166,24 @@ class Card {
 
 
   float getSize(String subject) {
-    int tempSize = 10;
     int loopCount = 0;
+    float tWidth = 0;
     textFont(universConB, tempSize);
-    while (( flyerPassageWidth - textWidth(subject)) < 20) {
+    while (abs(flyerPassageWidth - tWidth) > 5) {
+      textFont(universConB, tempSize);
+      tWidth = textWidth(subject);
+      println("t width" + tWidth);
+      println("flyer limit" + flyerPassageWidth);
       loopCount ++;
-      if ( textWidth(subject) > flyerPassageWidth){
-       tempSize -= 0.5; 
+      if ( tWidth > flyerPassageWidth){
+        println("subtracting 0.5");
+       tempSize -= 0.2; 
       } else {
-       tempSize += 0.5; 
+       println("adding 0.5");
+       tempSize += 0.2; 
       }
     }
-    println("loops" + loopCount);
+    
     return tempSize;
   }
 }
