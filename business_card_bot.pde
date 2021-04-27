@@ -8,7 +8,8 @@ int canvasY = int(canvasX/1.61);
 int imagePool = 1;//how many images there are to choose from
 PImage[] sample;
 PFont universConB, universLight;
-boolean preview = false; // set to true to check settings and generate 1 card
+boolean preview = true; // set to true to check settings and generate 1 card
+boolean flyer = true;
 
 
 color brightest = #000000;
@@ -18,7 +19,8 @@ void setup() {
   if (preview) {
     cardCount = 1;
   } 
-    size(1000, 618, PDF, "test.pdf");
+    //size(1000, 618, PDF, "test.pdf");
+    surface.setSize(1000,618);
   
   fonts();
   findImages();
@@ -38,16 +40,18 @@ void makeCards() {
   for (int i = 0; i < cardCount; i++) {
     int x = int(random(0, imageNames.size()));
     String cardName = imageNames.get(x);
-    cards[i] = new Card(cardName, brightest, saturated);
+    cards[i] = new Card(cardName, flyer);
   }
 }
 
 void draw() {
-  PGraphicsPDF pdf = (PGraphicsPDF) g;
+ // PGraphicsPDF pdf = (PGraphicsPDF) g;
   for (Card card : cards) {
     card.draw();
+    saveFrame("sample-###.png");
     if (!preview) {
-      pdf.nextPage();
+     // pdf.nextPage();
+     
     }
   }
  // endRecord();

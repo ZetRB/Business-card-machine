@@ -1,7 +1,7 @@
 color[] establishColourScheme(String chosenImage){
 //hi
-  int gridX = 10;
-  int gridY = 10; //set colour finder grid size
+  int gridX = 20;
+  int gridY = 20; //set colour finder grid size
   
   colourScheme = new color[gridX*gridY];
  
@@ -31,7 +31,7 @@ color[] establishColourScheme(String chosenImage){
   }
   
   color[] picked = new color[2];
-  picked[0] = colourScheme[int(random(0,colourScheme.length-1))];
+  picked[0] = brightest;
   picked[1] = saturated;
   
   return picked;
