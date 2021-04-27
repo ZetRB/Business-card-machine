@@ -20,14 +20,12 @@ void setup() {
   if (preview) {
     cardCount = 1;
   } 
-    //size(1000, 618, PDF, "test.pdf");
-    surface.setSize(1000,618);
-  
+  //size(1000, 618, PDF, "test.pdf");
+  surface.setSize(1000, 618);
   fonts();
   findImages();
   //showColours();  
   makeCards();
-  getWords();
   noLoop();
 }
 
@@ -42,20 +40,21 @@ void makeCards() {
   for (int i = 0; i < cardCount; i++) {
     int x = int(random(0, imageNames.size()));
     String cardName = imageNames.get(x);
-    cards[i] = new Card(cardName, flyer);
+    getWords();
+    cards[i] = new Card(cardName, flyer, doingWords);
+
   }
 }
 
 void draw() {
- // PGraphicsPDF pdf = (PGraphicsPDF) g;
+  // PGraphicsPDF pdf = (PGraphicsPDF) g;
   for (Card card : cards) {
     card.draw();
     saveFrame("output/sample-###.png");
     if (!preview) {
-     // pdf.nextPage();
-     
+      // pdf.nextPage();
     }
   }
- // endRecord();
- exit();
+  // endRecord();
+  exit();
 }
