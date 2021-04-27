@@ -1,9 +1,12 @@
 class Card {
   Grid grid;
+  int cWidth = 1000;
+  int cHeight = 618;
   PVector location, opposite;
   String forename = "ZET";
   String surname = "ROPER-BLACKMAN";
   String website = "This business card was designed by a robot- find out how at zetroperblackman.com";
+  String flyerBlurb = "A robot designed this business card while I was :";
   PImage background;
   color text, highlight;
   boolean flyer;
@@ -56,10 +59,16 @@ class Card {
   void resize(boolean flyer) {
     float lowerSF = 1;
     float upperSF = 1.5;
+    cWidth = 1000;
+    cHeight = 618;
     if (flyer) {
-      lowerSF = 0.8;
-      upperSF = 1.2;
+      lowerSF = 1.5;
+      upperSF = 2;
+      cWidth = 618;
+      cHeight = 1000;
+      
     }
+   surface.setSize(cWidth,cHeight);
     background.resize(int(width*(random(lowerSF, upperSF))), 0);
   }
 
@@ -92,6 +101,7 @@ class Card {
   }
 
   void draw() {
+    surface.setSize(cWidth,cHeight);
     setTextAlign(int(location.z));
     imageMode(CENTER);
     image(background, x, y);

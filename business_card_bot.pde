@@ -10,6 +10,7 @@ PImage[] sample;
 PFont universConB, universLight;
 boolean preview = true; // set to true to check settings and generate 1 card
 boolean flyer = true;
+StringList doingWords = new StringList(); 
 
 
 color brightest = #000000;
@@ -26,6 +27,7 @@ void setup() {
   findImages();
   //showColours();  
   makeCards();
+  getWords();
   noLoop();
 }
 
@@ -48,7 +50,7 @@ void draw() {
  // PGraphicsPDF pdf = (PGraphicsPDF) g;
   for (Card card : cards) {
     card.draw();
-    saveFrame("sample-###.png");
+    saveFrame("output/sample-###.png");
     if (!preview) {
      // pdf.nextPage();
      

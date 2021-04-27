@@ -1,0 +1,14 @@
+Welding
+Milling
+Turning
+Using Rhino 6
+Using Fusion 360
+Laser cutting
+Programming Arduino
+Drilling holes
+Measuring
+Boring
+Tapping Holes
+Cutting Threads
+
+
