@@ -148,7 +148,7 @@ class Card {
       textSpacing = -1;
       return -1;
     } else {
-     return 0; 
+      return 0;
     }
   }
 
@@ -170,69 +170,60 @@ class Card {
       text(surname, location.x, location.y + yOffset);
     }
     if (flyer) {
-      drawLines(lines, opposite);
-      drawLines(details, location);
+      drawLines(lines, opposite, true);
+      drawLines(details, location, false);
     }
   }
 
-  void drawLines(StringList lines, PVector location) {
+  void drawLines(StringList lines, PVector location, boolean showBlurb) {
     int totalOffset = 0;
     println(totalOffset);
     float size = 0;
     int textDir = setTextAlign(int(location.z));
-    if (textSpacing < 0) {
-      for (String line : lines) {
-        size = getSize(line);
-        textFont(universConB, size);
-        text(line, location.x, location.y + totalOffset);
-        if (textDir > 0) {
-          totalOffset += size;
-        } else {
-          totalOffset -= size;
-        }
-      }
-      size = getSize(flyerBlurb);
-      textFont(universConB, size);
-      text(flyerBlurb, location.x, location.y + totalOffset);
-    } else {
+    if (textDir > 0 && showBlurb) {
       size = getSize(flyerBlurb);
       textFont(universConB, size);
       text(flyerBlurb, location.x, location.y + totalOffset);
       totalOffset += size;
-      for (String line : lines) {
-        size =getSize(line);
-        textFont(universConB, size);
-        text(line, location.x, location.y + totalOffset);
-        if (textDir > 0) {
-          totalOffset += size;
-        } else {
-          totalOffset -= size;
-        }
-      }
     }
-  }
-
-
-  float getSize(String subject) {
-    int loopCount = 0;
-    float ammount;
-    float tWidth = 0;
-    textFont(universConB, tempSize);
-    while (abs(flyerPassageWidth - tWidth) > 5) {
-      ammount = max(0.5, abs(map((flyerPassageWidth - tWidth), 0, 3000, 0, 100)));
-      textFont(universConB, tempSize);
-      tWidth = textWidth(subject);
-      //  println("t width " + tWidth);
-      //  println("flyer limit " + flyerPassageWidth);
-      loopCount ++;
-      if ( tWidth > flyerPassageWidth) {
-        //   println("subtracting 0.5");
-        tempSize -= ammount;
+    for (String line : lines) {
+      size = getSize(line);
+      textFont(universConB, size);
+      text(line, location.x, location.y + totalOffset);
+      if (textDir > 0) {
+        totalOffset += size;
       } else {
-        //   println("adding 0.5");
-        tempSize += ammount;
+        totalOffset -= size;
       }
+    } if (textDir < 0 && showBlurb){
+     size = getSize(flyerBlurb);
+      textFont(universConB, size);
+      text(flyerBlurb, location.x, location.y + totalOffset); 
+      totalOffset -= size;
     }
-    return tempSize;
   }
+
+
+float getSize(String subject) {
+  int loopCount = 0;
+  float ammount;
+  float tWidth = 0;
+  textFont(universConB, tempSize);
+  while (abs(flyerPassageWidth - tWidth) > 0.5) {
+    ammount = max(0.1, abs(map((flyerPassageWidth - tWidth), 0, 3000, 0.5, 100)));
+    textFont(universConB, tempSize);
+    tWidth = textWidth(subject);
+    //  println("t width " + tWidth);
+    //  println("flyer limit " + flyerPassageWidth);
+    loopCount ++;
+    if ( tWidth > flyerPassageWidth) {
+      //   println("subtracting 0.5");
+      tempSize -= ammount;
+    } else {
+      //   println("adding 0.5");
+      tempSize += ammount;
+    }
+  }
+  return tempSize;
+}
 }
