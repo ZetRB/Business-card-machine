@@ -32,9 +32,8 @@ class Card {
 
     this.flyer = flyer;
     this.adjectives = doingWords;
-    println("constructor doing words");
-    //printArray(adjectives);
     background = loadImage(imageName);
+    println("Making new card from image:" + imageName + "\n");
     setup();
   }
 
@@ -44,9 +43,8 @@ class Card {
     populateStringList();
     x = int(random(width-background.width/2, 0+background.width/2));
     y = int(random(height-background.height/2, 0+background.height/2));
-    println(x, ":", y);
-    println("forename size", forenameSize);
-    println("surname size", surnameSize);
+    
+
 
     grid = new Grid(margin, 2, 2);
     location = grid.findGrid(sideBias);
@@ -54,7 +52,6 @@ class Card {
     while (opposite == location) {
       opposite = grid.findGrid(chooseEdge(sideBias*-1));
     }
-    println(location);
   }
 
   void populateStringList() {
@@ -72,8 +69,6 @@ class Card {
       minSize = 30;
       maxSize = 70;
       orderAdjectives();
-      print("lines Array - ");
-      printArray(lines);
     }
     surnameSize = int(random(minSize, maxSize));
     forenameSize = int(random(surnameSize+minSize, surnameSize+maxSize));
@@ -157,11 +152,11 @@ class Card {
     setTextAlign(int(location.z));
     imageMode(CENTER);
     image(background, x, y);
-    grid.draw();
-    fill(255, 0, 0);
-    ellipse(location.x, location.y, 20, 20);
-    fill(0, 255, 0);
-    ellipse(opposite.x, opposite.y, 20, 20);
+   // grid.draw();
+   // fill(255, 0, 0);
+   // ellipse(location.x, location.y, 20, 20);
+   // fill(0, 255, 0);
+   // ellipse(opposite.x, opposite.y, 20, 20);
     fill(text);
     if (!flyer) {
       textFont(universConB, forenameSize);
@@ -177,7 +172,7 @@ class Card {
 
   void drawLines(StringList lines, PVector location, boolean showBlurb) {
     int totalOffset = 0;
-    println(totalOffset);
+  //  println(totalOffset);
     float size = 0;
     int textDir = setTextAlign(int(location.z));
     if (textDir > 0 && showBlurb) {

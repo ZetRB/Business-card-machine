@@ -29,7 +29,7 @@ class Grid {
   }
 
   PVector findGrid(int bias) {
-    println(bias);
+    // println(bias);
     int choice;
     if (bias == -1) {
       choice = int(random(0, (gridPos.length/cols)-1));
@@ -68,7 +68,7 @@ class Grid {
   }
   
   void checkCorner(int choice){ // checks if the object is in a corner and sets the z componenet, text alignment, accordingly
-  println("choice: " , choice);
+  // println("choice: " , choice);
    if(choice == 0){
      gridPos[choice].set(gridPos[choice].x,gridPos[choice].y,1);
    } else if(choice == cols-1){

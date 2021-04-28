@@ -7,7 +7,7 @@ color[] establishColourScheme(String chosenImage){
  
 // int random = int(random(0,imageNames.size()));
  PImage sample = loadImage(chosenImage);
- println("image chosen = " + chosenImage);
+// println("image chosen = " + chosenImage);
  sample.loadPixels(); // choose random image to derive colour scheme
  
  int w = sample.width;
