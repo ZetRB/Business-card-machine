@@ -2,11 +2,9 @@ import java.util.Date;
 import processing.pdf.*;
 Card[] cards;
 color[] colourScheme;
-int cardCount = 10;
-int canvasX = 1000;
+int totalCount = 10;
 int flyerCount = 0;
 int count = 0;
-int canvasY = int(canvasX/1.61);
 int imagePool = 1;//how many images there are to choose from
 PImage[] sample;
 PFont universConB, universLight;
@@ -21,7 +19,7 @@ color saturated = #000000;
 
 void setup() {
   if (preview) {
-    cardCount = 1;
+    totalCount = 1;
   } 
   //size(1000, 618, PDF, "test.pdf");
   surface.setSize(1000, 618);
@@ -39,9 +37,9 @@ void fonts() {
 
 void makeCards() {
 
-  cards = new Card[cardCount]; // working on making it loop through however number of cards it wants to make
-  for (int i = 0; i < cardCount; i++) {
-    if (i> (cardCount/2)-1) {
+  cards = new Card[totalCount]; // working on making it loop through however number of cards it wants to make
+  for (int i = 0; i < totalCount; i++) {
+    if (i >= totalCount-flyerCount) {
       flyer = true;
     }
     int x = int(random(0, imageNames.size()));
