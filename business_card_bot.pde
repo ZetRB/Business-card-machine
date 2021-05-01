@@ -21,7 +21,6 @@ void setup() {
   if (preview) {
     totalCount = 1;
   } 
-  //size(1000, 618, PDF, "test.pdf");
   surface.setSize(1000, 618);
   fonts();
   findImages();

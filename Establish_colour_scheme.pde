@@ -5,9 +5,7 @@ color[] establishColourScheme(String chosenImage){
   
   colourScheme = new color[gridX*gridY];
  
-// int random = int(random(0,imageNames.size()));
  PImage sample = loadImage(chosenImage);
-// println("image chosen = " + chosenImage);
  sample.loadPixels(); // choose random image to derive colour scheme
  
  int w = sample.width;
@@ -18,7 +16,6 @@ color[] establishColourScheme(String chosenImage){
  for(int y = 0; y < gridY; y++){
   for (int x = 0; x < gridX; x++){
     colourScheme[(y*gridX) + x] = sample.pixels[int(((x+0.5)*w/gridX) + ((y+0.5)*h))];
-   // println("colur at pixel[ " + int(((x+0.5)*w) + ((y+0.5)*h)) + " ]");
   }
  }
   for (color colour : colourScheme){

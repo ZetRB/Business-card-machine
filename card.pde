@@ -43,12 +43,11 @@ class Card {
     populateStringList();
     x = int(random(width-background.width/2, 0+background.width/2));
     y = int(random(height-background.height/2, 0+background.height/2));
-    
-
 
     grid = new Grid(margin, 2, 2);
     location = grid.findGrid(sideBias);
     opposite = grid.findGrid(chooseEdge(sideBias*-1));
+    
     while (opposite == location) {
       opposite = grid.findGrid(chooseEdge(sideBias*-1));
     }
@@ -65,6 +64,7 @@ class Card {
   void setTextSize(boolean flyer) {
     float minSize = 50;
     float maxSize = 120;
+    
     if (flyer) {
       minSize = 30;
       maxSize = 70;
@@ -80,6 +80,7 @@ class Card {
     float upperSF = 1.5;
     cWidth = 1000;
     cHeight = 618;
+    
     if (flyer) {
       lowerSF = 1.5;
       upperSF = 2;
@@ -115,7 +116,6 @@ class Card {
       String temp2 = adjectives.get(random);
       adjectives.remove(random);
       String temp3 = temp + " - " + temp2;
-      //println("temp3- " + temp3);
       lines.append(temp3);
     }
   }
@@ -152,11 +152,11 @@ class Card {
     setTextAlign(int(location.z));
     imageMode(CENTER);
     image(background, x, y);
-   // grid.draw();
-   // fill(255, 0, 0);
-   // ellipse(location.x, location.y, 20, 20);
-   // fill(0, 255, 0);
-   // ellipse(opposite.x, opposite.y, 20, 20);
+    // grid.draw();
+    // fill(255, 0, 0);
+    // ellipse(location.x, location.y, 20, 20);
+    // fill(0, 255, 0);
+    // ellipse(opposite.x, opposite.y, 20, 20);
     fill(text);
     if (!flyer) {
       textFont(universConB, forenameSize);
@@ -171,16 +171,18 @@ class Card {
   }
 
   void drawLines(StringList lines, PVector location, boolean showBlurb) {
+
     int totalOffset = 0;
-  //  println(totalOffset);
-    float size = 0;
     int textDir = setTextAlign(int(location.z));
+    float size = 0;
+
     if (textDir > 0 && showBlurb) {
       size = getSize(flyerBlurb);
       textFont(universConB, size);
       text(flyerBlurb, location.x, location.y + totalOffset);
       totalOffset += size;
     }
+
     for (String line : lines) {
       size = getSize(line);
       textFont(universConB, size);
@@ -190,8 +192,10 @@ class Card {
       } else {
         totalOffset -= size;
       }
-    } if (textDir < 0 && showBlurb){
-     size = getSize(flyerBlurb);
+    } 
+
+    if (textDir < 0 && showBlurb) {
+      size = getSize(flyerBlurb);
       textFont(universConB, size);
       text(flyerBlurb, location.x, location.y + totalOffset); 
       totalOffset -= size;
@@ -199,26 +203,20 @@ class Card {
   }
 
 
-float getSize(String subject) {
-  int loopCount = 0;
-  float ammount;
-  float tWidth = 0;
-  textFont(universConB, tempSize);
-  while (abs(flyerPassageWidth - tWidth) > 0.5) {
-    ammount = max(0.1, abs(map((flyerPassageWidth - tWidth), 0, 3000, 0.5, 100)));
+  float getSize(String subject) {
+    float ammount;
+    float tWidth = 0;
     textFont(universConB, tempSize);
-    tWidth = textWidth(subject);
-    //  println("t width " + tWidth);
-    //  println("flyer limit " + flyerPassageWidth);
-    loopCount ++;
-    if ( tWidth > flyerPassageWidth) {
-      //   println("subtracting 0.5");
-      tempSize -= ammount;
-    } else {
-      //   println("adding 0.5");
-      tempSize += ammount;
+    while (abs(flyerPassageWidth - tWidth) > 0.5) {
+      ammount = max(0.1, abs(map((flyerPassageWidth - tWidth), 0, 3000, 0.5, 100)));
+      textFont(universConB, tempSize);
+      tWidth = textWidth(subject);
+      if ( tWidth > flyerPassageWidth) {
+        tempSize -= ammount;
+      } else {
+        tempSize += ammount;
+      }
     }
+    return tempSize;
   }
-  return tempSize;
-}
 }

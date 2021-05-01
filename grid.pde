@@ -33,13 +33,11 @@ class Grid {
     int choice;
     if (bias == -1) {
       choice = int(random(0, (gridPos.length/cols)-1));
-      //gridPos[choice].set(gridPos[choice].x, gridPos[choice].y, -1);
       checkCorner(choice);
       return(gridPos[choice]);
     } else if (bias == 1) {
       choice = int(random((cols-1)*(gridPos.length/cols), gridPos.length-1)); 
       checkCorner(choice);
-      //gridPos[choice].set(gridPos[choice].x,gridPos[choice].y,1);
       return(gridPos[choice]);
     } else if (bias == -2) {
       int[] random = new int[rows];
@@ -48,7 +46,6 @@ class Grid {
       }
       choice = random[int(random(0, random.length))];
       checkCorner(choice);
-      //gridPos[choice].set(gridPos[choice].x,gridPos[choice].y,-2);
       return(gridPos[choice]);
     } else if (bias == 2) {
       int[] random = new int[rows];
@@ -57,23 +54,20 @@ class Grid {
       }
       choice = random[int(random(0, random.length))];
       checkCorner(choice);
-      //gridPos[choice].set(gridPos[choice].x,gridPos[choice].y,-2);
       return(gridPos[choice]);
     } else {
       choice = int(random(0, gridPos.length)); 
       checkCorner(choice);
-      //gridPos[choice].set(gridPos[choice].x,gridPos[choice].y,0);
       return(gridPos[choice]);
     }
   }
   
   void checkCorner(int choice){ // checks if the object is in a corner and sets the z componenet, text alignment, accordingly
-  // println("choice: " , choice);
    if(choice == 0){
      gridPos[choice].set(gridPos[choice].x,gridPos[choice].y,1);
    } else if(choice == cols-1){
     gridPos[choice].set(gridPos[choice].x,gridPos[choice].y,3); 
-   } else if(choice == (rows-1)*cols){                      // this isnt good enough, will only work with 4 grid squares, needs attention
+   } else if(choice == (rows-1)*cols){                    
     gridPos[choice].set(gridPos[choice].x,gridPos[choice].y,7); 
    } else if(choice == (rows*cols)-1){
     gridPos[choice].set(gridPos[choice].x,gridPos[choice].y,9); 
