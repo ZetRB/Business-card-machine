@@ -56,7 +56,7 @@ class Card {
   void populateStringList() {
     details.append("ZET");
     //details.append("ROPER-BLACKMAN");
-    details.append("ZROPERBLACKMAN.COM");
+    details.append("ZEROPERBLACKMAN.COM");
     details.append("07462737588");
     details.append("ZROPERBLACKMAN@GMAIL.COM");
   }
@@ -209,7 +209,7 @@ class Card {
     textFont(universConB, tempSize);
     while (abs(flyerPassageWidth - tWidth) > 0.5) {
       ammount = max(0.1, abs(map((flyerPassageWidth - tWidth), 0, 3000, 0.5, 100)));
-      textFont(universConB, tempSize);
+      textFont(spaceMono, tempSize);
       tWidth = textWidth(subject);
       if ( tWidth > flyerPassageWidth) {
         tempSize -= ammount;
