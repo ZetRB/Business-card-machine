@@ -3,7 +3,7 @@ import processing.pdf.*;
 Card[] cards;
 color[] colourScheme;
 int totalCount = 10;
-int flyerCount = 0;
+int flyerCount = 10;
 int count = 0;
 int imagePool = 1;//how many images there are to choose from
 PImage[] sample;

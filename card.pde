@@ -165,27 +165,27 @@ class Card {
       text(surname, location.x, location.y + yOffset);
     }
     if (flyer) {
-      drawLines(lines, opposite, true);
-      drawLines(details, location, false);
+      drawLines(lines, opposite, true, universConB);
+      drawLines(details, location, false, universConB);
     }
   }
 
-  void drawLines(StringList lines, PVector location, boolean showBlurb) {
+  void drawLines(StringList lines, PVector location, boolean showBlurb, PFont font) {
 
     int totalOffset = 0;
     int textDir = setTextAlign(int(location.z));
     float size = 0;
 
     if (textDir > 0 && showBlurb) {
-      size = getSize(flyerBlurb);
-      textFont(universConB, size);
+      size = getSize(flyerBlurb,font);
+      textFont(font, size);
       text(flyerBlurb, location.x, location.y + totalOffset);
       totalOffset += size;
     }
 
     for (String line : lines) {
-      size = getSize(line);
-      textFont(universConB, size);
+      size = getSize(line,font);
+      textFont(font, size);
       text(line, location.x, location.y + totalOffset);
       if (textDir > 0) {
         totalOffset += size;
@@ -195,21 +195,21 @@ class Card {
     } 
 
     if (textDir < 0 && showBlurb) {
-      size = getSize(flyerBlurb);
-      textFont(universConB, size);
+      size = getSize(flyerBlurb,font);
+      textFont(font, size);
       text(flyerBlurb, location.x, location.y + totalOffset); 
       totalOffset -= size;
     }
   }
 
 
-  float getSize(String subject) {
+  float getSize(String subject, PFont font) {
     float ammount;
     float tWidth = 0;
-    textFont(universConB, tempSize);
+    textFont(font, tempSize);
     while (abs(flyerPassageWidth - tWidth) > 0.5) {
       ammount = max(0.1, abs(map((flyerPassageWidth - tWidth), 0, 3000, 0.5, 100)));
-      textFont(spaceMono, tempSize);
+      textFont(font, tempSize);
       tWidth = textWidth(subject);
       if ( tWidth > flyerPassageWidth) {
         tempSize -= ammount;
